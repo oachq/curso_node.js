@@ -1,52 +1,60 @@
-/*
-    archivo que se usa para controlar las respuestas de las peticiones get, put, post etc..
-    este se debe comunicar con user-router.js pero no se usara debido a que no se puede exportar a
-    user-routes.js
-
-    //TODO: Nota queda pendiente de revision para que quede todo arreglado.
-*/
-const express = require('express');
 const { reques, response } = require('express');
 
 
-const usuariosGet = (req, res = response) => {
-    res.json({
-        msg: 'api get - controlador ',
-    })
-}
+const usuariosGet = (req = request, res = response) => {
 
-const usuarisPut = (req, res = response) => {
+    const { q, nombre = 'No name', apikey, page = 1, limit } = req.query;
+
     res.json({
-        conexion: true,
-        msg: 'metodo put - controlador',
+        msg: 'get API - controlador',
+        q,
+        nombre,
+        apikey,
+        page,
+        limit
     });
 }
 
 const usuariosPost = (req, res = response) => {
+
+    const { nombre, edad } = req.body;
+
     res.json({
-        conexion: true,
-        msg: 'metodo post - controlador',
+        msg: 'post API - usuariosPost',
+        nombre,
+        edad
     });
 }
 
-const usuariosDelete = (req, resp = response) => {
+const usuariosPut = (req, res = response) => {
+
+    const { id } = req.params;
+
     res.json({
-        conexion: true,
-        msg: 'metodo delete - controlador',
+        msg: 'put API - usuariosPut',
+        id
     });
 }
 
-const usuarioPatch = (req, resp = response) => {
+const usuariosPatch = (req, res = response) => {
     res.json({
-        conexion: true,
-        msg: 'metodo patch - controlador',
+        msg: 'patch API - usuariosPatch'
     });
 }
+
+const usuariosDelete = (req, res = response) => {
+    res.json({
+        msg: 'delete API - usuariosDelete'
+    });
+}
+
+
+
 
 module.exports = {
     usuariosGet,
-    usuarisPut,
     usuariosPost,
+    usuariosPut,
+    usuariosPatch,
     usuariosDelete,
-    usuarioPatch,
 }
