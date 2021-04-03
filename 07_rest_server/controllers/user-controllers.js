@@ -43,10 +43,10 @@ const usuarioPatch = (req, resp = response) => {
     });
 }
 
-module.exports = [
+module.exports = {
     usuariosGet,
     usuarisPut,
     usuariosPost,
     usuariosDelete,
-    usuarioPatch
-]
+    usuarioPatch,
+}

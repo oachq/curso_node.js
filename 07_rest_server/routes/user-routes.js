@@ -1,5 +1,5 @@
-const express = require('express');
-//const { Router } = require('express');
+//const express = require('express');
+const { Router } = require('express');
 
 const {
     usuariosGet,
@@ -9,7 +9,7 @@ const {
     usuarioPatch
 } = require('../controllers/user-controllers');
 
-const router = express.Router();
+const router = Router();
 
 // --------------------- este metodo no me funciono ---------------------//
 /*
@@ -23,8 +23,8 @@ router.post('/', usuariosPost);
 router.delete('/', usuariosDelete);
 //metodo patch
 router.patch('/', usuarioPatch);
-*/
 
+*/
 
 //metodo get 
 router.get('/', (req, res) => {
