@@ -11,8 +11,15 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
 
-        this.usuariosPath = '/api/user'; // cte. del path de los usuarioss url 
-        this.authPath = '/api/auth'; //ruta para autenticacion JWT
+        this.paths = {
+            auth: '/api/auth', //ruta para autenticacion JWT
+            buscar: '/api/buscar',
+            categorias: '/api/categorias', // consulta categorias 
+            productos: '/api/productos', // productos
+            usuario: '/api/user', // cte. del path de los usuarioss url 
+
+        }
+
 
         //conectar  a base de datos 
         this.conectarDB();
@@ -41,9 +48,11 @@ class Server {
 
     routes() {
 
-        this.app.use(this.authPath, require('../routes/auth'));
-        this.app.use(this.usuariosPath, require('../routes/user-routes'));
-
+        this.app.use(this.paths.auth, require('../routes/auth'));
+        this.app.use(this.paths.buscar, require('../routes/buscar'));
+        this.app.use(this.paths.categorias, require('../routes/categorias'));
+        this.app.use(this.paths.productos, require('../routes/productos'));
+        this.app.use(this.paths.usuario, require('../routes/user-routes'));
     }
 
     listen() {
